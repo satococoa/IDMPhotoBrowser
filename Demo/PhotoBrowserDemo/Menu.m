@@ -100,6 +100,10 @@
     photo.caption = @"Campervan";
     [photos addObject:photo];
     
+    // long photo
+    photo = [IDMPhoto photoWithURL:[NSURL URLWithString:@"http://imgsrc.baidu.com/forum/w%3D580%3B/sign=f930a4e20cf41bd5da53e8fc61e180cb/78310a55b319ebc4336b35508026cffc1f1716e3.jpg"]];
+    [photos addObject:photo];
+    
     if(buttonSender.tag == 102)
     {
         photo = [IDMPhoto photoWithFilePath:[[NSBundle mainBundle] pathForResource:@"photo1l" ofType:@"jpg"]];

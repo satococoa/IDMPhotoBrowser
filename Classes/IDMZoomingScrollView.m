@@ -32,6 +32,7 @@
 - (id)initWithPhotoBrowser:(IDMPhotoBrowser *)browser {
     if ((self = [super init])) {
         // Delegate
+        self.longPhotoLimitHeight = 960;
         self.photoBrowser = browser;
         
 		// Tap view for background
@@ -177,6 +178,10 @@
 	if (xScale > 1 && yScale > 1) {
 		//minScale = 1.0;
 	}
+    
+    if (imageSize.height >= self.longPhotoLimitHeight) {
+        minScale = xScale;
+    }
     
 	// Calculate Max
 	CGFloat maxScale = 4.0; // Allow double scale
