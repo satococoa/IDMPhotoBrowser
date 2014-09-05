@@ -163,6 +163,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _displayArrowButton = YES;
         _displayCounterLabel = NO;
         
+        _delayAutoHiddenToolBar = YES;
+        
         _forceHideStatusBar = NO;
         _usePopAnimation = NO;
         
@@ -1183,7 +1185,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 - (void)hideControlsAfterDelay {
 	// return;
     
-    if (![self areControlsHidden]) {
+    if (![self areControlsHidden] && self.delayAutoHiddenToolBar) {
         [self cancelControlHiding];
 		_controlVisibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideControls) userInfo:nil repeats:NO];
 	}
