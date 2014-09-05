@@ -32,6 +32,9 @@
 @property (nonatomic, strong) IDMCaptionView *captionView;
 @property (nonatomic, strong) id<IDMPhoto> photo;
 
+// if the photo height very long, set min zoom scale, Default is 960
+@property (nonatomic) CGFloat longPhotoLimitHeight;
+
 - (id)initWithPhotoBrowser:(IDMPhotoBrowser *)browser;
 - (void)displayImage;
 - (void)displayImageFailure;

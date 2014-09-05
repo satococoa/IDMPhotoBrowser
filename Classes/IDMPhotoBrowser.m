@@ -163,6 +163,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _displayArrowButton = YES;
         _displayCounterLabel = NO;
         
+        _delayAutoHiddenToolBar = YES;
+        
         _forceHideStatusBar = NO;
         _usePopAnimation = NO;
         
@@ -823,6 +825,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     return _photos[index];
 }
 
+- (NSUInteger)curentPageIndex {
+    return _currentPageIndex;
+}
+
 - (IDMCaptionView *)captionViewForPhotoAtIndex:(NSUInteger)index {
     IDMCaptionView *captionView = nil;
     if ([_delegate respondsToSelector:@selector(photoBrowser:captionViewForPhotoAtIndex:)]) {
@@ -1096,7 +1102,9 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 	// Hide controls when dragging begins
-	[self setControlsHidden:YES animated:YES permanent:NO];
+    if (self.delayAutoHiddenToolBar) {
+        [self setControlsHidden:YES animated:YES permanent:NO];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -1183,7 +1191,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 - (void)hideControlsAfterDelay {
 	// return;
     
-    if (![self areControlsHidden]) {
+    if (![self areControlsHidden] && self.delayAutoHiddenToolBar) {
         [self cancelControlHiding];
 		_controlVisibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideControls) userInfo:nil repeats:NO];
 	}
