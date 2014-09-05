@@ -81,4 +81,7 @@
 // Get IDMPhoto at index
 - (id<IDMPhoto>)photoAtIndex:(NSUInteger)index;
 
+// GET current page index
+- (NSUInteger)curentPageIndex;
+
 @end

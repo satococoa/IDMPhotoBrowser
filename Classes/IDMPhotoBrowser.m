@@ -825,6 +825,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     return _photos[index];
 }
 
+- (NSUInteger)curentPageIndex {
+    return _currentPageIndex;
+}
+
 - (IDMCaptionView *)captionViewForPhotoAtIndex:(NSUInteger)index {
     IDMCaptionView *captionView = nil;
     if ([_delegate respondsToSelector:@selector(photoBrowser:captionViewForPhotoAtIndex:)]) {
